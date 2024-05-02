@@ -20,7 +20,7 @@ class MuxMsg(object):
         self.ver = ver
         self.auth = auth
         self.magic = magic
-        self.input_buffer = ''
+        self.input_buffer = b'' # Initialize input_buffer to an empty bytes object
     
     def getVer(self) :
         return self.ver
@@ -42,7 +42,15 @@ class MuxMsg(object):
         '''
         if not data:
             return
-        self.input_buffer += data
+
+        # Make sure a bytes object is appended to input_buffer.
+        if isinstance(data, bytes):
+            self.input_buffer += data
+        elif isinstance(data, str):
+            self.input_buffer += data.encode()
+        else:
+            return
+
         while self.parse_one():
             pass
 

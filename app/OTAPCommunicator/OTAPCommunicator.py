@@ -151,6 +151,15 @@ def send_data(mac, msg, port):
         cbid = resp.callbackId
     except ApiException.APIError as ex:
         rc = ex.rc
+    # On a node with a weak signal invalid responses were received
+    # they caused VALUE_NOT_IN_OPTIONS exceptions to be raised.
+    # handle all the other exceptions to retry the send in:
+    # libs/SmartMeshSDK/protocols/otap/OTAPCommunicator.py->data_task
+    except Exception as err:
+        log.debug('Exception in send_data: %s', str(err))
+        # 14 = VALUE_NOT_IN_OPTIONS, but in this RC context I saw it defined as NAK,
+        # in any case it is not handled uniquely and is an error that should be retried.
+        rc = 14
     # always return RC, callbackId
     return (rc, cbid)
 

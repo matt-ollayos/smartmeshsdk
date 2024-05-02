@@ -93,7 +93,7 @@ class IpMgrConnectorMuxInternal(ApiConnector.ApiConnector ) :
         if not self.isConnected :
             return
         try :
-            self.socket.send("stop")
+            self.socket.send(str.encode("stop"))
             self.socket.shutdown(socket.SHUT_RD)    # start disconnection
             self.socket.close()
         except socket.error :

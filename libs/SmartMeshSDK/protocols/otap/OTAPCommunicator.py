@@ -36,6 +36,12 @@ NACK = 14
 def print_mac(m):
     return '-'.join(["%02X" % b for b in m])
 
+# found the mac was a tuple and the tables are lists and Python3 operators fail on type mismatch
+def mac_in_mac_table(m, mlist):
+    for each in mlist:
+        if tuple(m) == tuple(each):
+            return True
+    return False
 
 BROADCAST_ADDR = 8 * [ 0xFF, ]
 
@@ -82,7 +88,7 @@ class BlockMetadata(object):
         else:
             num_deps = self.blocks[block_num][0] + 1
             macs = self.blocks[block_num][1]
-            macs.append(mac)
+            macs.append(list(mac))
             self.blocks[block_num] = (num_deps, macs)
 
     def get_meta(self, block_num):
@@ -214,16 +220,15 @@ class OTAPCommunicator(object):
 
         if not self.state == 'Handshake':
             return
-
-        if not mac in self.handshake_motes:
+        if not mac_in_mac_table(mac, self.handshake_motes):
             log.info('Duplicate handshake response for %s: %d', print_mac(mac), oh_resp.otapResult)
             return
         
         # add a mote that accepts the handshake to the list of motes to send to
         if oh_resp.otapResult == 0:
             # validate mac is in the handshake list
-            if mac in self.handshake_motes and not mac in self.incomplete_motes:
-                self.incomplete_motes.append(mac)
+            if mac_in_mac_table(mac, self.handshake_motes) and not mac_in_mac_table(mac, self.incomplete_motes):
+                self.incomplete_motes.append(list(mac))
         else:
             otap_err = otap_error_string(oh_resp.otapResult)
             msg = "Handshake rejected (%s) by %s" % (otap_err, print_mac(mac))
@@ -231,7 +236,8 @@ class OTAPCommunicator(object):
             log.warning(msg)
         # TODO: handle the delay field
         # remove this mote from the list of expected handshakers
-        self.handshake_motes.remove(mac)        
+        log.info(str(self.handshake_motes))
+        self.handshake_motes.remove(list(mac))        
         # once the list of expected handshakers is empty, we're ready to move on
         if not len(self.handshake_motes):
             self.handshake_complete()
@@ -243,30 +249,30 @@ class OTAPCommunicator(object):
         os_resp = OtapStatusResp()
         os_resp.parse(cmd_data)
         log.debug(str(os_resp))
-
+        
         if not self.state == 'Status':
             return
         
         # remove this mote from the list of motes we need status from
-        if mac in self.status_motes:
-            self.status_motes.remove(mac)
+        if mac_in_mac_table(mac, self.status_motes):
+            self.status_motes.remove(list(mac))
         # if missing blocks, add_data_block
         if len(os_resp.missing_blocks):
             for b in os_resp.missing_blocks:
                 self.transmit_list.add_dependent(b, mac)
         # otherwise, move the mote to the completed list
         elif os_resp.header.otapResult == 0:
-            if mac in self.incomplete_motes:
+            if mac_in_mac_table(mac, self.incomplete_motes):
                 log.info('Data transmission to %s is complete' % print_mac(mac))
-                self.incomplete_motes.remove(mac)
-                self.complete_motes.append(mac)
+                self.incomplete_motes.remove(list(mac))
+                self.complete_motes.append(list(mac))
         else:
             # no missing blocks, but status is an error
-            if mac in self.incomplete_motes:
+            if mac_in_mac_table(mac, self.incomplete_motes):
                 msg = 'Status error (%s) for %s, declaring failure' % (otap_error_string(os_resp.header.otapResult), print_mac(mac))
                 log.error(msg)
-                self.incomplete_motes.remove(mac)
-                self.failure_motes.append(mac)
+                self.incomplete_motes.remove(list(mac))
+                self.failure_motes.append(list(mac))
         
         # TODO: handle the response that indicates the mote has reset or forgotten
         # about this OTAP session
@@ -291,8 +297,8 @@ class OTAPCommunicator(object):
         if not self.state == 'Commit':
             return
 
-        if mac in self.commit_motes:
-            self.commit_motes.remove(mac)
+        if mac_in_mac_table(mac, self.commit_motes):
+            self.commit_motes.remove(list(mac))
             if oc_resp.otapResult == 0:
                 fcs = self.files[self.current_file].fcs
                 msg = '%s committed %s [FCS=0x%04x]' % (print_mac(mac),
@@ -304,8 +310,8 @@ class OTAPCommunicator(object):
                 msg = 'Commit error (%s) on %s' % (otap_error_string(oc_resp.otapResult), print_mac(mac))
                 print (msg)
                 log.error(msg)
-                self.complete_motes.remove(mac)
-                self.failure_motes.append(mac)
+                self.complete_motes.remove(list(mac))
+                self.failure_motes.append(list(mac))
                 
         # detect when all motes have responded to the commit
         if not len(self.commit_motes):
@@ -313,19 +319,19 @@ class OTAPCommunicator(object):
         
     def cmd_failure_callback(self, mac, cmd_id):
         log.error('Command failure for %s, command %d' % (print_mac(mac), cmd_id))
-        self.failure_motes.append(mac)
+        self.failure_motes.append(list(mac))
         # TODO: remove the failed mote from the all_motes list for the next file(s)?
         # remove the failed mote from the internal lists
-        if mac in self.handshake_motes:
-            self.handshake_motes.remove(mac)
-        if mac in self.incomplete_motes:
-            self.incomplete_motes.remove(mac)
-        if mac in self.status_motes:
-            self.status_motes.remove(mac)
-        if mac in self.commit_motes:
-            self.commit_motes.remove(mac)
-        if mac in self.complete_motes:
-            self.complete_motes.remove(mac)
+        if mac_in_mac_table(mac, self.handshake_motes):
+            self.handshake_motes.remove(list(mac))
+        if mac_in_mac_table(mac, self.incomplete_motes):
+            self.incomplete_motes.remove(list(mac))
+        if mac_in_mac_table(mac, self.status_motes):
+            self.status_motes.remove(list(mac))
+        if mac_in_mac_table(mac, self.commit_motes):
+            self.commit_motes.remove(list(mac))
+        if mac_in_mac_table(mac, self.complete_motes):
+            self.complete_motes.remove(list(mac))
         # detect if this command failure means we need to change state
         if self.state == 'Handshake' and not len(self.handshake_motes):
             self.handshake_complete()
