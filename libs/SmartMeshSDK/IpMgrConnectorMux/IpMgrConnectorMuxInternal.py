@@ -9,6 +9,11 @@ from   SmartMeshSDK import ApiException,                   \
                            ApiConnector
 from   SmartMeshSDK.ApiDefinition import IpMgrDefinition
 
+#Payload in response to hello that means valid response
+HELLO_RSP_PAYLOAD_SUCCESS = b'\x00\x04'
+#Hello Response Command ID
+HELLO_CMD_ID = 1
+
 class IpMgrConnectorMuxInternal(ApiConnector.ApiConnector ) :
     '''
     \ingroup ApiConnector
@@ -43,6 +48,7 @@ class IpMgrConnectorMuxInternal(ApiConnector.ApiConnector ) :
         self.muxMsg = MuxMsg.MuxMsg(self.processCmd)
         self.apiDef = IpMgrDefinition.IpMgrDefinition()
         self.notifIds = self.apiDef.getIds(self.apiDef.NOTIFICATION) 
+        self.sessionID = 0
         
     def connect(self, params = {}) :
         '''
@@ -111,7 +117,7 @@ class IpMgrConnectorMuxInternal(ApiConnector.ApiConnector ) :
             (cmdId, paramsBinList) = self.apiDef.serialize(cmdNames, params)
             paramsBin = struct.pack('!'+str(len(paramsBinList))+'B', *paramsBinList) 
             ApiConnector.logDump(paramsBin, "RawIO OUT. Command ID: {0}".format(cmdId))
-            packet = self.muxMsg.build_message(cmdId, paramsBin)
+            packet = self.muxMsg.build_message(cmdId, paramsBin, self.sessionID)
             self.acknowledgeBuf = None
             self.ackCmdId = -1
             try :
@@ -206,6 +212,12 @@ class IpMgrConnectorMuxInternal(ApiConnector.ApiConnector ) :
         \brief deserialize and process command
         '''
         ApiConnector.logDump(payload, "RawIO INP. Command ID: {0}".format(cmdId))
+        if cmdId == HELLO_CMD_ID :
+            try :
+                if payload == HELLO_RSP_PAYLOAD_SUCCESS :
+                    self.sessionID = reserved
+            except Exception as ex :
+                ApiConnector.log.error("command parse error {0}. Error {1}".format(cmdId, ex))
         if cmdId in self.notifIds :
             try :
                 payloadList = struct.unpack('!'+str(len(payload))+'B', payload)
@@ -225,5 +237,6 @@ class IpMgrConnectorMuxInternal(ApiConnector.ApiConnector ) :
         '''
         \brief Send Hello command
         '''
+        self.sessionID = 0
         res = self.send(["mux_hello"], {"version" : self.muxMsg.getVer(), "secret" :  self.muxMsg.getAuth()})
         return res
