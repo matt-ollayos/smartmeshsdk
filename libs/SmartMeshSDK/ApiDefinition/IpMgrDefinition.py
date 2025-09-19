@@ -226,7 +226,7 @@ class IpMgrDefinition(ApiDefinition.ApiDefinition):
             'description':  'Sent by the manager to initiate a new session with a client.',
             'request'    : [
                 ['version',                 INT,      1,   None],
-                ['secret',                  HEXDATA,  8,   None],
+                ['secret',                  HEXDATA,None,  None], # set length to None for variable length secret
             ],
             'response'   : {
                 'FIELDS':  [

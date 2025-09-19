@@ -15,10 +15,13 @@ VERSION = 4
 # Message Parser
 
 class MuxMsg(object):
-    def __init__(self, cb, ver = VERSION, magic = MAGIC, auth = AUTH):
+    def __init__(self, cb, ver = VERSION, magic = MAGIC, auth = None):
         self.callback = cb
         self.ver = ver
-        self.auth = auth
+        if auth is None:
+            self.auth = AUTH
+        else:
+             self.auth = auth
         self.magic = magic
         self.input_buffer = b'' # Initialize input_buffer to an empty bytes object
     

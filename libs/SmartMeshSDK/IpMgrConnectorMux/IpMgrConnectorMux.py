@@ -16,6 +16,9 @@ class IpMgrConnectorMux(IpMgrConnectorMuxInternal):
     \brief Public class for IP manager connector, over SerialMux.
     '''
 
+    def __init__(self, authToken=None):
+        super().__init__(authToken=authToken)
+
     #======================== commands ========================================
 
     ##

@@ -52,6 +52,7 @@ def version_string():
 
 DEFAULT_HOST       = '127.0.0.1'
 DEFAULT_PORT       = 9900
+DEFAULT_AUTH       = [ 48, 49, 50, 51, 52, 53, 54, 55 ]
 
 OTAP_EXTENSIONS    = ['.otap', '.otap2']
 
@@ -85,7 +86,14 @@ for l in LOGGERS:
 
 #============================ command line options ============================
 
-from optparse import OptionParser
+from optparse import OptionParser, OptionValueError
+
+def parse_authtoken(option, opt_str, value, parser):
+    try:
+        auth_bytes = bytes.fromhex(value)
+        parser.values.auth = list(auth_bytes)
+    except ValueError as e:
+        raise OptionValueError(f"Invalid hex string for --authtoken: {e}")
 
 otap_options = OTAPCommunicator.DEFAULT_OPTIONS
 
@@ -112,6 +120,13 @@ parser.add_option("--delay", dest="delay", default=otap_options.inter_command_de
 parser.add_option("--nostart", dest="autorun", default=True,
                   action="store_false",
                   help="Don't start running the OTAP process automatically (use interactive mode)")
+parser.add_option("--auth",
+                  type="string",
+                  action="callback",
+                  callback=parse_authtoken,
+                  dest="auth",  # This must match the callback assignment
+                  default=DEFAULT_AUTH,
+                  help="Hex-encoded auth token (e.g., 3031323334353637 for ASCII '01234567')")
 (options, args) = parser.parse_args()
 
 if options.verbose:
@@ -130,7 +145,7 @@ if options.serial_port:
     mgr = IpMgrConnectorSerial.IpMgrConnectorSerial()
     mgr.connect({'port': options.serial_port})
 else:
-    mgr = IpMgrConnectorMux.IpMgrConnectorMux()
+    mgr = IpMgrConnectorMux.IpMgrConnectorMux(authToken=options.auth)
     mgr.connect({'host': options.host, 'port': int(options.port)})
 
 # Wrap a simple adapter around the manager's sendData method

@@ -37,7 +37,7 @@ class IpMgrConnectorMuxInternal(ApiConnector.ApiConnector ) :
     _RC_OK         = 0  
     _RC_TIMEOUT    = 5
     
-    def __init__(self, maxQSize = 100) :
+    def __init__(self, maxQSize = 100, authToken=None) :
         ApiConnector.ApiConnector.__init__(self, maxQSize)
         self.acknowledgeBuf = None
         self.ackCmdId = -1
@@ -45,7 +45,7 @@ class IpMgrConnectorMuxInternal(ApiConnector.ApiConnector ) :
         self.sendLock = threading.Lock()
         self.socket = None
         self.inputThread = None
-        self.muxMsg = MuxMsg.MuxMsg(self.processCmd)
+        self.muxMsg = MuxMsg.MuxMsg(self.processCmd, auth=authToken)
         self.apiDef = IpMgrDefinition.IpMgrDefinition()
         self.notifIds = self.apiDef.getIds(self.apiDef.NOTIFICATION) 
         self.sessionID = 0
