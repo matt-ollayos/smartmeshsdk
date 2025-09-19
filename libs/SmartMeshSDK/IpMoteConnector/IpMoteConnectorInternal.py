@@ -10,7 +10,7 @@ from   SmartMeshSDK.SerialConnector import SerialConnector
 from   SmartMeshSDK.ApiDefinition   import IpMoteDefinition
 
 class IpMoteConnectorInternal(SerialConnector.SerialConnector):
-    '''
+    r'''
     \ingroup ApiConnector
     
     \brief Internal class for HART mote connector, over Serial.

@@ -22,7 +22,7 @@ log.addHandler(NullHandler())
 # \ingroup ApiConnector
 # 
 class HartMgrConnectorInternal(ApiConnector):
-    '''\brief Connector object for WirelessHART Manager using the XML API
+    r'''\brief Connector object for WirelessHART Manager using the XML API
     '''
 
     DEFAULT_HOST = '192.168.99.100'

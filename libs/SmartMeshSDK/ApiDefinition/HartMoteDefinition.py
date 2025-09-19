@@ -4,7 +4,7 @@ from . import ApiDefinition
 from . import ByteArraySerializer
 
 class HartMoteDefinition(ApiDefinition.ApiDefinition):
-    '''
+    r'''
     \ingroup ApiDefinition
     
     \brief  API definition for the IP mote.
@@ -33,19 +33,19 @@ class HartMoteDefinition(ApiDefinition.ApiDefinition):
         self.serializer = ByteArraySerializer.ByteArraySerializer(self)
     
     def default_serializer(self,commandArray,fieldsToFill):
-        '''
+        r'''
         \brief IpMgrDefinition-specific implementation of default serializer
         '''
         return self.serializer.serialize(commandArray,fieldsToFill)
         
     def deserialize(self,type,cmdId,byteArray):
-        '''
+        r'''
         \brief IpMgrDefinition-specific implementation of deserializer
         '''
         return self.serializer.deserialize(type,cmdId,byteArray)
     
     def serializeSend(self,commandArray,fieldsToFill):
-        '''
+        r'''
         \brief Serializer specific for the send command
         
         This serializer:
@@ -78,7 +78,7 @@ class HartMoteDefinition(ApiDefinition.ApiDefinition):
         return cmdId,byteArray
     
     def serializeSetNv(self,commandArray,fieldsToFill):
-        '''
+        r'''
         \brief Serializer specific for the setNVParameter commands
         
         This serializer:
@@ -105,7 +105,7 @@ class HartMoteDefinition(ApiDefinition.ApiDefinition):
         return cmdId,byteArray
     
     def serializeGetNv(self,commandArray,fieldsToFill):
-        '''
+        r'''
         \brief Serializer specific for the getNVParameter commands
         
         This serializer adds the 4B 'reserved' field to the serialized bytes

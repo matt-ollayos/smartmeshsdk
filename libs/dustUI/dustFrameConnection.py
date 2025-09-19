@@ -216,7 +216,7 @@ class dustFrameConnection(dustFrame.dustFrame):
         self.guiLock.release()
     
     def _connectSerial(self):
-        '''
+        r'''
         \brief Connect through the serial port.
         '''
        
@@ -326,7 +326,7 @@ class dustFrameConnection(dustFrame.dustFrame):
         self._connect()
 
     def _connectSerialMux(self):
-        '''
+        r'''
         \brief Connect through the serial Mux.
         '''
         
@@ -382,7 +382,7 @@ class dustFrameConnection(dustFrame.dustFrame):
         self._connect()
 
     def _connectXml(self):
-        '''
+        r'''
         \brief Connect over XML-RPC.
         '''
         
@@ -440,7 +440,7 @@ class dustFrameConnection(dustFrame.dustFrame):
     #======================== helpers =========================================
     
     def _connect(self):
-        '''
+        r'''
         \brief Connect routine common to all connectors.
         '''
         
@@ -448,7 +448,7 @@ class dustFrameConnection(dustFrame.dustFrame):
         self.connectCb(self.connector)
     
     def _disconnect(self):
-        '''
+        r'''
         \brief Disconnect routine common to all connectors.
         '''
         

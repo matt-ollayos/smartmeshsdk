@@ -12,7 +12,7 @@ from   .IpMgrConnectorSerialInternal import IpMgrConnectorSerialInternal
 # 
 
 class IpMgrConnectorSerial(IpMgrConnectorSerialInternal):
-    '''
+    r'''
     \brief Public class for IP manager connector, over Serial.
     '''
 

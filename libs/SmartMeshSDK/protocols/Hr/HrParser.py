@@ -79,7 +79,7 @@ class HrParser(object):
     #======================== public ==========================================
     
     def parseHr(self,hr):
-        '''
+        r'''
         \brief parse a byte list representing a received HR.
         
         \returns The parsed HR, of the following format:

@@ -18,7 +18,7 @@ log.setLevel(logging.ERROR)
 log.addHandler(NullHandler())
 
 class ByteArraySerializer(object):
-    '''
+    r'''
     \ingroup ApiDefinition
     
     \brief Serializer/deserializer for byte arrays.

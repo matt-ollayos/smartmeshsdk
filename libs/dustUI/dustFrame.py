@@ -221,7 +221,7 @@ class dustFrame(tkinter.Frame):
         return self.headerColor
     
     def _clearGuiElems(self,level=0):
-        '''
+        r'''
         \brief Clear all the GUI elements which are part of the list of GUI
                elements.
         
@@ -284,7 +284,7 @@ class dustFrame(tkinter.Frame):
     #======================== helpers =========================================
     
     def _hexdata2string(self,array,start,stop):
-        '''
+        r'''
         \brief Convert an array into a string.
         
         \param [in] array The array of bytes to convert, e.g. [0x01, 0x02]
@@ -302,7 +302,7 @@ class dustFrame(tkinter.Frame):
         return output
 
     def _hexdata2num(self,array,start,stop):
-        '''
+        r'''
         \brief Convert an array into a number.
         
         \param [in] array The array of bytes to convert, e.g. [0x01, 0x02]

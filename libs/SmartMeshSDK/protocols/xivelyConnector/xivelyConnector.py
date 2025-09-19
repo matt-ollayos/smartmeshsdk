@@ -644,7 +644,7 @@ class xivelyConnector(object):
     #======================== public ==========================================
     
     def createDatastream(self,mac,datastream):
-        '''
+        r'''
         \brief Create a particular datastream on a device, or the one that
             already exists on Xively.
         

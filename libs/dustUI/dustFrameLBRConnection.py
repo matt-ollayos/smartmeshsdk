@@ -97,7 +97,7 @@ class dustFrameLBRConnection(dustFrame.dustFrame):
     #======================== private =========================================
     
     def _connect(self):
-        '''
+        r'''
         \brief Connect to the LBR.
         '''
         
@@ -130,7 +130,7 @@ class dustFrameLBRConnection(dustFrame.dustFrame):
         self.connectedCb(self.connector)
 
     def _disconnect(self):
-        '''
+        r'''
         \brief Disconnect from the LBR.
         '''
         

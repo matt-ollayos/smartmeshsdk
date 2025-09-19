@@ -25,7 +25,7 @@ log.setLevel(logging.ERROR)
 log.addHandler(NullHandler())
 
 class SerialConnector(ApiConnector):
-    '''
+    r'''
     \ingroup ApiConnector
     
     \brief The generic serial connector.
@@ -103,19 +103,19 @@ class SerialConnector(ApiConnector):
     #======================== virtual methods =================================
 
     def isValidPacketId(self, cmdId, isResponse, packetId):
-        '''
+        r'''
         \brief Return whether a received packet is in sequence
         '''
         raise NotImplementedError() # to be implemented by child class
 
     def _buildTxHeader(self, cmdId, isResponse, serializedFields):
-        '''
+        r'''
         \brief Build the header for a TX packet.
         '''
         raise NotImplementedError() # to be implemented by child class
 
     def _ackIfNeeded(self,cmdId,isResponse):
-        '''
+        r'''
         \brief Send an ACK if needed.
         '''
         raise NotImplementedError() # to be implemented by child class
@@ -234,7 +234,7 @@ class SerialConnector(ApiConnector):
     #======================== HDLC callbacks ==================================
     
     def _hdlcConnectCb(self,state):
-        '''
+        r'''
         \brief called by HDLC when the connected state has changed.
        
         \param state True when the HDLC module is connected to a device,
@@ -246,7 +246,7 @@ class SerialConnector(ApiConnector):
             self.disconnect("HDLC disconnected")
     
     def _hdlcRxCb(self,frameRx):
-        '''
+        r'''
         \brief called by HDLC when it's done receiving a complete frame.
         
         \note The frame received does not contain any of the HDLC-specific

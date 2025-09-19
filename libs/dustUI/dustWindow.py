@@ -74,7 +74,7 @@ class dustWindow(tkinter.Tk):
     #======================== private =========================================
     
     def _releaseAndQuit(self):
-        '''
+        r'''
         \brief Close the main application.
         
         Called when the user closes the main application window.

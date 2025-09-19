@@ -62,7 +62,7 @@ def reversedict(d):
     return dict((v,k) for (k,v) in d.iteritems())
 
 def stringifyMacIpAddresses(indict):
-    '''
+    r'''
     in: {
         'field1':     123,
         'macAddress': [0,1,2,3,4,5,6,7],
@@ -88,7 +88,7 @@ def stringifyMacIpAddresses(indict):
     return outdict
 
 def destringifyMacAddresses(d):
-    '''
+    r'''
     in: {
         'field1':     123,
         'macAddress': '00-01-02-03-04-05-06-07',
@@ -112,7 +112,7 @@ def destringifyMacAddresses(d):
 #============================ classes =========================================
 
 class ManagerHandler(threading.Thread):
-    '''
+    r'''
     \brief Connects to the manager, re-connects automatically
     '''
     
@@ -241,7 +241,7 @@ class ManagerHandler(threading.Thread):
             logCrash(self.name,err)
 
 class SnapshotThread(threading.Thread):
-    '''
+    r'''
     \brief one instance per JsonManager, waits to be triggered, does snapshot on one manager
     '''
     

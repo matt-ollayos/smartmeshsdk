@@ -79,7 +79,7 @@ class dustFrameFields(dustFrame.dustFrame):
     #======================== private =========================================
     
     def _displayFields(self,type,nameArray,fields):
-        '''
+        r'''
         \brief Display a response or notification as GUI elements. If the fields
                contain a list of elements, each one is displayed as a separate
                line in the resulting table.

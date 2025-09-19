@@ -6,7 +6,7 @@ import threading
 from   SmartMeshSDK import ApiException
 
 class IpMgrSubscribe(object):
-    '''
+    r'''
     \brief Notification listener for IpMgrConnectorMux object
     '''
     
@@ -86,7 +86,7 @@ class IpMgrSubscribe(object):
         self._lock = threading.Lock()
         
     def start(self):
-        '''
+        r'''
         \brief Start the subscriber _thread.
         '''
         
@@ -110,7 +110,7 @@ class IpMgrSubscribe(object):
         self._isStarted = True
         
     def subscribe(self, notifTypes, fun, isRlbl):
-        '''
+        r'''
         \brief Subscribe to notification(s).
         
         Calling this function multiple times will not cancel the effects of

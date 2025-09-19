@@ -21,7 +21,7 @@ log.addHandler(NullHandler())
 #
 
 class HartMgrDefinition(ApiDefinition.ApiDefinition):
-    '''
+    r'''
     \brief API definition for the HART manager.
    
     \note This class inherits from ApiDefinition. It redefines the attributes of
@@ -778,7 +778,7 @@ class HartMgrDefinition(ApiDefinition.ApiDefinition):
         return resp
 
     def deserialize(self, cmd_name, xmlrpc_resp):
-        '''\brief Returns the XML-RPC response as a dict
+        r'''\brief Returns the XML-RPC response as a dict
 
         \returns A tuple of commandName and the response dictionary, 
                  which contains each of the fields of the response. 
@@ -796,7 +796,7 @@ class HartMgrDefinition(ApiDefinition.ApiDefinition):
     # (must be defined ahead of commands)
 
     def serialize_getConfig(self, commandArray, cmd_params):
-        '''\brief Returns an array of parameters for a typical getConfig query
+        r'''\brief Returns an array of parameters for a typical getConfig query
         '''
         cmd_metadata = self.getDefinition(self.COMMAND, commandArray)
         prefix = []
@@ -1478,7 +1478,7 @@ class HartMgrDefinition(ApiDefinition.ApiDefinition):
         {
             'id'         : 'getConfig',
             'name'       : 'getPaths',
-            'description': '''Get the list of Paths to the mote\'s neighbors''',
+            'description': r'''Get the list of Paths to the mote\'s neighbors''',
             'request'    : [
                 # the request parameter moteMac matches the XML query for Paths
                 ['moteMac',                STRING,    25,  None],

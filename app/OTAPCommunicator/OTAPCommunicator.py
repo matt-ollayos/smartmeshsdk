@@ -1,5 +1,5 @@
 #!/usr/bin/python
-'''OTAP Communicator for IP Manager
+r'''OTAP Communicator for IP Manager
 
 The OTAP Communicator connects to the IP Manager through the Serial Mux. The Serial Mux
 must be up and running for the OTAP Communicator to function.

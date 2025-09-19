@@ -110,7 +110,7 @@ def configureLogging():
 #============================ configuration ===================================
 
 class AppConfig(object):
-    '''
+    r'''
     \brief A singleton which contains some configuration, typically for an
         application.
     '''

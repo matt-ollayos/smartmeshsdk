@@ -14,7 +14,7 @@ class NullLogHandler(logging.Handler):
         pass
 
 class DustCli(threading.Thread):
-    '''
+    r'''
     \brief Thread which handles CLI commands entered by the user.
     '''
     

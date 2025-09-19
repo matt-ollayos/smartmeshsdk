@@ -12,7 +12,7 @@ log.addHandler(NullHandler())
 DEFAULT_TSBUF_SIZE = 10
 
 class RateCalculatorError(Exception):
-    '''
+    r'''
     \brief Exception class associated with the rate calculator.
     '''
     
@@ -36,7 +36,7 @@ class RateCalculatorError(Exception):
             return "Unknown error: #" + str(self.errorCode)
 
 class RateCalculator(object):
-    '''
+    r'''
     \brief Rate calculator class.
     '''
     

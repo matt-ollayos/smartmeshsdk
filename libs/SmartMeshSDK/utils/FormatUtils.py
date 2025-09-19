@@ -9,13 +9,13 @@ except ImportError:
 LOG_FORMAT_TIMESTAMP = '%Y/%m/%d %H:%M:%S'
 
 def formatBuffer(buf):
-    '''
+    r'''
     example: [0x11,0x22,0x33,0x44,0x55,0x66,0x77,0x88] -> "11-22-33-44-55-66-77-88"
     '''
     return '-'.join(["%.2x"%i for i in buf])
     
 def formatMacString(mac,upper=False):
-    '''
+    r'''
     example: 0x1122334455667788 -> "11-22-33-44-55-66-77-88"
     '''
     
@@ -27,7 +27,7 @@ def formatMacString(mac,upper=False):
     return res
 
 def formatIpString(ip):
-    '''
+    r'''
     example: [254,128,0,0,0,0,0,0,0,23,13,0,0,48,93,57] -> "fe80:0000:0000:0000:0017:0d00:0030:5d39"
     '''
     ipString       = []
@@ -38,7 +38,7 @@ def formatIpString(ip):
     return ipString
 
 def formatShortMac(mac):
-    '''
+    r'''
     example: 0x1122334455667788 -> "77-88"
     '''
     return '-'.join(["%.2x"%i for i in mac[6:]])
@@ -86,7 +86,7 @@ def formatTimestamp(timestamp=None):
     )
 
 def format_mac_string_to_bytes(mac_string):
-    '''
+    r'''
     "00-11-22-33-44-55-66-77" -> [0x00,0x11,0x22,0x33,0x44,0x55,0x66,0x77]
     '''
     return [int(b,16) for b in mac_string.split('-')]

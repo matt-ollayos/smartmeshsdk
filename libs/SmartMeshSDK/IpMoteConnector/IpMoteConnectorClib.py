@@ -356,7 +356,7 @@ class IpMoteConnector(ApiConnector,threading.Thread):
     # UART interaction
     
     def _uart_txByte(self,b):
-        '''
+        r'''
         \brief Called by C library when wants to send a byte over the serial
             port.
         '''
@@ -369,7 +369,7 @@ class IpMoteConnector(ApiConnector,threading.Thread):
     # status notification
     
     def _ipmt_status(self,newStatus):
-        '''
+        r'''
         \brief Called by C library when connection status is changed.
         '''
         log.debug('_ipmt_status newStatus={0}'.format(newStatus))
@@ -379,7 +379,7 @@ class IpMoteConnector(ApiConnector,threading.Thread):
     # data notifications
     
     def _ipmt_reply(self,cmdId):
-        '''
+        r'''
         \brief Called by C library when a reply is received.
         '''
         log.debug('_ipmt_reply cmdId={0} (0x{0:02x})'.format(cmdId))
@@ -389,7 +389,7 @@ class IpMoteConnector(ApiConnector,threading.Thread):
         return 0
     
     def _ipmt_notif(self,cmdId,subcmdId):
-        '''
+        r'''
         \brief Called by C library when a notification is received.
         '''
         log.debug(

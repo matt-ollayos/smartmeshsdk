@@ -53,7 +53,7 @@ class dustFrameBrowse(dustFrame.dustFrame):
     #======================== private =========================================
     
     def _browse(self):
-        '''
+        r'''
         \brief Browse button clicked; have the user select a number of files.
         '''
         

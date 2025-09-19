@@ -12,7 +12,7 @@ from   .HartMgrConnectorInternal import HartMgrConnectorInternal
 # 
 
 class HartMgrConnector(HartMgrConnectorInternal):
-    '''
+    r'''
     \brief Public class for the HART Manager connector using the XML API.
     '''
 

@@ -20,7 +20,7 @@ log.setLevel(logging.INFO)
 log.addHandler(NullHandler())
 
 def logDump(buf, msg = None, level=logging.DEBUG):
-    '''
+    r'''
     \brief Print dump for binary object to trace file.
     '''
     
@@ -37,7 +37,7 @@ def logDump(buf, msg = None, level=logging.DEBUG):
         
 
 class ApiConnector(object):
-    '''
+    r'''
     \ingroup ApiConnector
     
     \brief Base class for all connector objects.
@@ -69,7 +69,7 @@ class ApiConnector(object):
         raise NotImplementedError("ApiConnector.send is not implemented")
 
     def getNotificationInternal(self, timeoutSec=-1):
-        '''
+        r'''
         \brief get notification from queue
         
         \param timeoutSec timeout for waiting if queue is empty.
@@ -97,7 +97,7 @@ class ApiConnector(object):
         return res
     
     def oneTimeRaiseDisconnectException(self, notif):
-        '''
+        r'''
         \brief raise exception only one time for one session and save current
                notification.
         '''
@@ -108,7 +108,7 @@ class ApiConnector(object):
             raise ApiException.ConnectionError(self.disconnectReason)
 
     def putNotification(self, item):
-        '''
+        r'''
         \brief Put notification to queue
          
         Insert notification to queue. If queue is full raise ConnectionError exception
@@ -126,7 +126,7 @@ class ApiConnector(object):
             raise ApiException.ConnectionError("Queue overflowed")
 
     def putDisconnectNotification(self, reason):
-        '''
+        r'''
         \brief Put Disconnect notification to queue
        
         \param reason reason for disconnection
@@ -137,7 +137,7 @@ class ApiConnector(object):
      
 class NotifQueue(Queue):
     class _DisconnectNotification:
-        '''
+        r'''
         \brief Special internal notification - connection is broken
         '''
         def __init__(self, reason):
@@ -148,7 +148,7 @@ class NotifQueue(Queue):
         Queue.__init__(self)
     
     def get(self, timeout = -1):
-        '''
+        r'''
         \brief Get notification from queue
         
         \param timeout timeout for waiting if queue is empty.
@@ -171,7 +171,7 @@ class NotifQueue(Queue):
             return None 
                
     def putDisconnectNotification(self, reason):
-        '''
+        r'''
         \brief Put Disconnect notification to queue
        
         \param reason reason for disconnection

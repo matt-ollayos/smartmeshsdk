@@ -12,7 +12,7 @@ from   .IpMgrConnectorMuxInternal import IpMgrConnectorMuxInternal
 # 
 
 class IpMgrConnectorMux(IpMgrConnectorMuxInternal):
-    '''
+    r'''
     \brief Public class for IP manager connector, over SerialMux.
     '''
 

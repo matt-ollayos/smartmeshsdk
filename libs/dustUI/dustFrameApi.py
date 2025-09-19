@@ -80,7 +80,7 @@ class dustFrameApi(dustFrame.dustFrame):
     #======================== private =========================================
     
     def _loadApi(self):
-        '''
+        r'''
         \brief Called when pressing the 'load' button.
         '''
         

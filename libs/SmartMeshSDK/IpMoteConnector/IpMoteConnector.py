@@ -12,7 +12,7 @@ from   .IpMoteConnectorInternal import IpMoteConnectorInternal
 # 
 
 class IpMoteConnector(IpMoteConnectorInternal):
-    '''
+    r'''
     \brief Public class for IP mote connector, over Serial.
     '''
 

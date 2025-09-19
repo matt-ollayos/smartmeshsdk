@@ -4,7 +4,7 @@ from . import ApiDefinition
 from . import ByteArraySerializer
 
 class IpMgrDefinition(ApiDefinition.ApiDefinition):
-    '''
+    r'''
     \ingroup ApiDefinition
     
     \brief API definition for the IP manager.
@@ -53,7 +53,7 @@ class IpMgrDefinition(ApiDefinition.ApiDefinition):
         self.serializer = ByteArraySerializer.ByteArraySerializer(self)
     
     def default_serializer(self,commandArray,fieldsToFill):
-        '''
+        r'''
         \brief IpMgrDefinition-specific implementation of default serializer
        
         \param commandArray   An array of the form [commandName, subCommandname]
@@ -69,7 +69,7 @@ class IpMgrDefinition(ApiDefinition.ApiDefinition):
         return self.serializer.serialize(commandArray,fieldsToFill)
     
     def deserialize(self,type,cmdId,byteArray):
-        '''
+        r'''
         \brief IpMgrDefinition-specific implementation of deserializer
         '''
         return self.serializer.deserialize(type,cmdId,byteArray)

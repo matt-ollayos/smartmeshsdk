@@ -84,7 +84,7 @@ class dustFrameCommand(dustFrame.dustFrame):
     #======================== private =========================================
     
     def _handleCommandSelected(self,name,index,mode):
-        '''
+        r'''
         \brief Called when an item is selected from the drop-down list of
                commands.
         
@@ -95,7 +95,7 @@ class dustFrameCommand(dustFrame.dustFrame):
         self._handleCommand(0)
 
     def _handleSubCommandSelected(self,name,index,mode):
-        '''
+        r'''
         \brief Called when an item is selected from the drop-down list of
                subcommands.
         
@@ -106,7 +106,7 @@ class dustFrameCommand(dustFrame.dustFrame):
         self._handleCommand(1)
         
     def _handleCommand(self,level):
-        '''
+        r'''
         \brief Generic handler when item is selected from drop-down list of (sub)commands.
         
         \param level 0 indicates a command was selected. 1 indicates a subcommand was selected.
@@ -300,7 +300,7 @@ class dustFrameCommand(dustFrame.dustFrame):
             self.subcommandToSend.set(tempOptions[0])
     
     def _handleSend(self):
-        '''
+        r'''
         \brief Called when 'send' button is clicked.
         '''
         
@@ -381,7 +381,7 @@ class dustFrameCommand(dustFrame.dustFrame):
     #======================== helpers =========================================
     
     def _rawToValue(self,raw,format,length,options):
-        '''
+        r'''
         \brief convert a raw value entered by the user into a value useable by the 
                connector.
         

@@ -5,7 +5,7 @@ from SmartMeshSDK.ApiDefinition   import ApiDefinition,    \
 from SmartMeshSDK.ApiException    import ConnectionError
 
 class IpMgrConnectorSerialInternal(SerialConnector.SerialConnector):
-    '''
+    r'''
     \ingroup ApiConnector
     
     \brief Internal class for IP manager connector, over Serial.

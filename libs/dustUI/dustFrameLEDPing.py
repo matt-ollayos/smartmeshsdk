@@ -64,14 +64,14 @@ class dustFrameLEDPing(dustFrame.dustFrame):
     #======================== public ==========================================
     
     def enableButton(self):
-        '''
+        r'''
         \brief Enable start button.
         '''
         with self.guiLock:
             self.startStopButton.configure(state=tkinter.NORMAL)
     
     def disableButton(self):
-        '''
+        r'''
         \brief Disable start button.
         '''
         with self.guiLock:
@@ -79,14 +79,14 @@ class dustFrameLEDPing(dustFrame.dustFrame):
             self.startStopButton.configure(text='start')
     
     def enableMacText(self):
-        '''
+        r'''
         \brief Enable MAC text field.
         '''
         with self.guiLock:
             self.macText.configure(state=tkinter.NORMAL)
     
     def disableMacText(self):
-        '''
+        r'''
         \brief Disable MAC text field.
         '''
         with self.guiLock:

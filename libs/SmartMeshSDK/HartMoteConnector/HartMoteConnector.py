@@ -12,7 +12,7 @@ from   .HartMoteConnectorInternal import HartMoteConnectorInternal
 # 
 
 class HartMoteConnector(HartMoteConnectorInternal):
-    '''
+    r'''
     \brief Public class for the HART Mote connector, over Serial.
     '''
 

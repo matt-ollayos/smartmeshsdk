@@ -4,7 +4,7 @@ from . import ApiDefinition
 from . import ByteArraySerializer
 
 class IpMoteDefinition(ApiDefinition.ApiDefinition):
-    '''
+    r'''
     \ingroup ApiDefinition
     
     \brief  API definition for the IP mote.
@@ -29,13 +29,13 @@ class IpMoteDefinition(ApiDefinition.ApiDefinition):
         self.serializer = ByteArraySerializer.ByteArraySerializer(self)
     
     def default_serializer(self,commandArray,fieldsToFill):
-        '''
+        r'''
         \brief IpMgrDefinition-specific implementation of default serializer
         '''
         return self.serializer.serialize(commandArray,fieldsToFill)
         
     def deserialize(self,type,cmdId,byteArray):
-        '''
+        r'''
         \brief IpMgrDefinition-specific implementation of deserializer
         '''
         return self.serializer.deserialize(type,cmdId,byteArray)

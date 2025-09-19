@@ -201,7 +201,7 @@ def parse_oap_notif(data, index = 0):
 #===== OAP notification base class
 
 class OAPNotif(object):
-    '''
+    r'''
     \brief Parent class for all OAP notification structures.
     '''
     
@@ -230,7 +230,7 @@ class OAPNotif(object):
 #===== OAP Sample/Report notification
 
 class OAPSample(OAPNotif):
-    '''
+    r'''
     \brief representation of a (e.g. sensor) sample notification.
     '''
     def __init__(self):
@@ -243,7 +243,7 @@ class OAPSample(OAPNotif):
         )
 
 class OAPDigitalInSample(OAPSample):
-    '''
+    r'''
     \brief representation of an digital_in sample notification.
     '''
     def __init__(self):
@@ -269,7 +269,7 @@ class OAPDigitalInSample(OAPSample):
         return returnVal
 
 class OAPTempSample(OAPSample):
-    '''
+    r'''
     \brief representation of a temperature sample notification.
     '''
     def __init__(self):
@@ -292,7 +292,7 @@ class OAPTempSample(OAPSample):
         return returnVal
 
 class OAPAnalogSample(OAPSample):
-    '''
+    r'''
     \brief representation of an analog sample notification.
     '''
     def __init__(self):
@@ -320,7 +320,7 @@ class OAPAnalogSample(OAPSample):
 #===== OAP Stats report (min/max/ave)
 
 class OAPAnalogStats(OAPNotif):
-    '''
+    r'''
     \brief representation of a stats notification.
     '''
     def __init__(self):
@@ -352,7 +352,7 @@ class OAPAnalogStats(OAPNotif):
 #===== OAP Digital change notification
 
 class OAPDigitalIn(OAPNotif):
-    '''
+    r'''
     \brief representation of a digital input notification.
     '''
     def __init__(self):

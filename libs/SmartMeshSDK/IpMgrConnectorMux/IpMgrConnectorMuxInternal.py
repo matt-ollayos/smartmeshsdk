@@ -15,7 +15,7 @@ HELLO_RSP_PAYLOAD_SUCCESS = b'\x00\x04'
 HELLO_CMD_ID = 1
 
 class IpMgrConnectorMuxInternal(ApiConnector.ApiConnector ) :
-    '''
+    r'''
     \ingroup ApiConnector
     
     \brief Internal class for IP manager connector, through Serial Mux.
@@ -51,7 +51,7 @@ class IpMgrConnectorMuxInternal(ApiConnector.ApiConnector ) :
         self.sessionID = 0
         
     def connect(self, params = {}) :
-        '''
+        r'''
         \brief Connect to device
         
         \param params Dictionary of connection parameters:
@@ -175,7 +175,7 @@ class IpMgrConnectorMuxInternal(ApiConnector.ApiConnector ) :
         return resParams
             
     def ackSignal(self):
-        '''
+        r'''
         \brief Send signal 'Acknowledge received'
         '''
         try    : 
@@ -184,7 +184,7 @@ class IpMgrConnectorMuxInternal(ApiConnector.ApiConnector ) :
             pass
 
     def inputProcess(self):
-        '''
+        r'''
         \brief Processing device input 
         '''
         try :
@@ -208,7 +208,7 @@ class IpMgrConnectorMuxInternal(ApiConnector.ApiConnector ) :
                 pass    # Ignore socket error 
     
     def processCmd(self, reserved, cmdId, payload):
-        '''
+        r'''
         \brief deserialize and process command
         '''
         ApiConnector.logDump(payload, "RawIO INP. Command ID: {0}".format(cmdId))
@@ -234,7 +234,7 @@ class IpMgrConnectorMuxInternal(ApiConnector.ApiConnector ) :
             self.ackSignal()
     
     def sendHelloCmd(self):
-        '''
+        r'''
         \brief Send Hello command
         '''
         self.sessionID = 0

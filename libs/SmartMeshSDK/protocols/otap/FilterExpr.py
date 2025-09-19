@@ -1,4 +1,4 @@
-'''
+r'''
 The FilterExpr class implements the filter() method for easily applying
 whitelist and blacklist operations to fields of an object.
 

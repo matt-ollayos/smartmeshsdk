@@ -12,7 +12,7 @@ log.setLevel(logging.ERROR)
 log.addHandler(NullHandler())
 
 class FieldFormats(object):
-    '''
+    r'''
     \brief Enumeration of possible field formats.
     '''
     STRING              = 'string'
@@ -25,7 +25,7 @@ class FieldFormats(object):
     ARRAY               = 'array'
 
 class FieldOptions(object):
-    '''
+    r'''
     \brief Possible options for a command field
     '''
     
@@ -64,7 +64,7 @@ class FieldOptions(object):
                            'option='+str(self.optionName)+' val='+str(val))
 
 class Field(object):
-    '''
+    r'''
     \brief Object representing one field of a command.
     '''
     
@@ -118,7 +118,7 @@ class Field(object):
         return True
 
 class ApiDefinition(object):
-    '''
+    r'''
     \ingroup ApiDefinition
     
     \brief Base class for all API definitions objects.
@@ -140,7 +140,7 @@ class ApiDefinition(object):
             self._array2scalar(self.notifications)
     
     def _array2scalar(self, defs) :
-        '''
+        r'''
         \brief Convert ARRAY to list of scalars
         '''
         for fields in defs:
@@ -158,7 +158,7 @@ class ApiDefinition(object):
                     fields['response']['FIELDS'] += scalars
     
     def idToName(self,type,id):
-        '''
+        r'''
         \brief Translate a command or notification ID into a command name.
        
         \exception CommandError.INVALID_COMMAND Command does
@@ -173,7 +173,7 @@ class ApiDefinition(object):
                            'id=%s' % str(id))
     
     def nameToId(self,type,nameArray):
-        '''
+        r'''
         \brief Translate a command or notification name into a command ID.
        
         \exception CommandError.INVALID_COMMAND Command does
@@ -188,7 +188,7 @@ class ApiDefinition(object):
                                         nameArray[0])
     
     def rcToLabel(self,rc):
-        '''
+        r'''
         \brief Translate a return code (RC) into its label, i.e. 'RC_OK' for 0x00.
         
         \param rc A return code, an int.
@@ -211,7 +211,7 @@ class ApiDefinition(object):
         return rcLabel
     
     def rcToDescription(self,rc,nameArray):
-        '''
+        r'''
         \brief Translate a return code (RC) into a description.
        
         If this RC is described in the API definition for thise nameArray, then
@@ -248,7 +248,7 @@ class ApiDefinition(object):
         return returnVal
     
     def getIds(self,type):
-        '''
+        r'''
         \brief Get the list of command IDs this API defines
        
         \returns A array of numbers, each numbers representing a command ID
@@ -257,7 +257,7 @@ class ApiDefinition(object):
         return [item['id'] for item in list]
     
     def getNames(self,type,nameArray=None):
-        '''
+        r'''
         \brief Get the list of (sub)command names this API defines
        
         \param type         Type of definition to be looked up 
@@ -280,7 +280,7 @@ class ApiDefinition(object):
         return [command['name'] for command in list]
     
     def getDefinition(self,type,nameArray):
-        '''
+        r'''
         \brief Get the complete definition of a (sub)command, from its name.
         
         \param type           Type of definition to be looked up 
@@ -300,7 +300,7 @@ class ApiDefinition(object):
         return definition
         
     def getDescription(self,type,nameArray):
-        '''
+        r'''
         \brief Get the description of a command.
        
         \param type           Type of definition to be looked up 
@@ -374,7 +374,7 @@ class ApiDefinition(object):
         return definition,list
     
     def getRequestFieldNames(self,commandArray):
-        '''
+        r'''
         \brief Get the request fields of a (sub)command, from its name.
         
         \param commandArray   An array of the form [commandName, subCommandname]
@@ -415,7 +415,7 @@ class ApiDefinition(object):
         return fields
     
     def getResponseFieldNames(self,type,nameArray):
-        '''
+        r'''
         \brief Get the response fields of a (sub)command, from its name.
         
         \param type        Command or notification?
@@ -489,7 +489,7 @@ class ApiDefinition(object):
     
     @classmethod
     def fieldFormatToString(self,fieldLength,fieldFormat):
-        '''
+        r'''
         \brief Turns the field format into a human-readable string.
         
         \param fieldLength The number of bytes (an int) of the field
@@ -524,7 +524,7 @@ class ApiDefinition(object):
     #======================== validation ======================================
     
     def areSameFieldNames(self,fieldsCommand,fieldsPassed):
-        '''
+        r'''
         \brief Determine whether the fields passed contains the same field names
                as defined in the commands.
        
@@ -556,7 +556,7 @@ class ApiDefinition(object):
     def isValidFieldFormatting(self,commandArray,
                                     fieldName,
                                     fieldValue):
-        '''
+        r'''
         \brief Determine whether the field passed contains a correct format
                according to the command definition passed.
        
@@ -574,7 +574,7 @@ class ApiDefinition(object):
             )
     
     def validateRequest(self,commandArray,fields):
-        '''
+        r'''
         \brief Validate that the fields passed form a valid request for the
                specified command or subcommand. Raises a CommandError exception
                if the request fields are invalid. 
@@ -615,7 +615,7 @@ class ApiDefinition(object):
     #======================== serialization ===================================
     
     def _getSerializer(self,commandArray):
-        '''
+        r'''
         \brief Get the serializer associated with a command or subcommand.
         
         \param commandArray   An array of the form [commandName, subCommandname]
@@ -627,7 +627,7 @@ class ApiDefinition(object):
         return self.getDefinition(self.COMMAND,commandArray)['serializer']
     
     def serialize(self,commandArray,fields):
-        '''
+        r'''
         \brief Serialize a command.
        
         This function applies the serializer function specified in this
@@ -665,7 +665,7 @@ class ApiDefinition(object):
     #======================== abstract methods ================================
 
     def default_serializer(self,commandArray,fields):
-        '''
+        r'''
         \brief Default serializer for the API if no 'serializer' is specified
                in the command description
        

@@ -56,7 +56,7 @@ class NetworkHealthAnalyzer(object):
     MIN_NETWORKAVAILABILITY = 0.99
     
     def _nettest_networkAvailability(self,data):
-        '''
+        r'''
         <p>
             This test verifies that the overall network availability is above the MIN_NETWORKAVAILABILITY threshold.
         </p>
@@ -144,7 +144,7 @@ class NetworkHealthAnalyzer(object):
     MIN_NETWORKRELIABILITY = 0.999
     
     def _nettest_networkReliability(self,data):
-        '''
+        r'''
         <p>
             This test verifies that the overall network reliability is above the MIN_NETWORKRELIABILITY threshold.
         </p>
@@ -226,7 +226,7 @@ class NetworkHealthAnalyzer(object):
     MAX_NETWORKLATENCY = 2000
     
     def _nettest_networkLatency(self,data):
-        '''
+        r'''
         <p>
             This test verifies that the average network latency is below the MAX_NETWORKLATENCY threshold.
         </p>
@@ -286,7 +286,7 @@ class NetworkHealthAnalyzer(object):
     #===== multiple joins
     
     def _nettest_multipleJoins(self,data):
-        '''
+        r'''
         <p>
             This test verifies that each mote has joined the same number of times as the AP.
         </p>
@@ -362,7 +362,7 @@ class NetworkHealthAnalyzer(object):
     MAX_MOTE_LINKS = 180
     
     def _nettest_numLinks(self,data):
-        '''
+        r'''
         <p>
             This test verifies that the number of links assigned to each mote does not exceed the maximum limit.
         </p>
@@ -449,7 +449,7 @@ class NetworkHealthAnalyzer(object):
     MIN_NUMGOODNEIGHBORS = 3
     
     def _nettest_numGoodNeighbors(self,data):
-        '''
+        r'''
         <p>
             This test verifies that each mote has enough good neighbors.
         </p>
@@ -515,7 +515,7 @@ class NetworkHealthAnalyzer(object):
     MAX_MOTELATENCY = 2000
     
     def _nettest_perMoteLatency(self,data):
-        '''
+        r'''
         <p>
             This test verifies that the average latency for each mote is less than MAX_MOTELATENCY.
         </p>
@@ -580,7 +580,7 @@ class NetworkHealthAnalyzer(object):
     #===== single parent
     
     def _nettest_oneSingleParentMote(self,data):
-        '''
+        r'''
         <p>
             This test verifies that there is exactly one mote with only one parent.
         </p>
@@ -653,7 +653,7 @@ class NetworkHealthAnalyzer(object):
     #===== Insufficient Bandwidth
     
     def _nettest_insufficientBandwidth(self,data):
-        '''
+        r'''
         <p>
             This test verifies that the mote has enough bandwidth assigned to it. 
         </p>
@@ -726,7 +726,7 @@ class NetworkHealthAnalyzer(object):
     
     def _nettest_perMoteAvailability(self,data):
 
-        '''   
+        r'''   
         <p>
             This test verifies that the availability for each mote is more than MIN_MOTEAVAILABILITY.
         </p>
@@ -811,7 +811,7 @@ class NetworkHealthAnalyzer(object):
     
     def _nettest_moteCongestion(self,data):
 
-        '''   
+        r'''   
         <p>
             This test checks whether there is congestion at a mote.
         </p>
@@ -894,7 +894,7 @@ class NetworkHealthAnalyzer(object):
     THRES_LOW_STAB      = 50
     
     def _nettest_stabilityVsRssi(self,data):
-        '''
+        r'''
         <p>
             This test verifies that the stability of a path is plausible given its RSSI.
         </p>

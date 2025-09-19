@@ -1,11 +1,11 @@
-'''
+r'''
 Created on Mar 6, 2012
 
 \author alushin
 '''
 
 class ConnectionError(Exception) :
-    '''
+    r'''
     \brief Exception class associated with connection to the device.
     '''
     
@@ -20,7 +20,7 @@ class QueueError(Exception) :
         pass
 
 class CommandTimeoutError(Exception) :
-    '''
+    r'''
     \brief Device timeout error (disconnection)
     '''
     def __init__(self, cmd):
@@ -29,7 +29,7 @@ class CommandTimeoutError(Exception) :
         return "Device timeout error for command {0}".format(self.cmd)
     
 class APIError(Exception) :
-    '''
+    r'''
     \brief Exception class associated with connection the API.
     '''
     
@@ -52,7 +52,7 @@ class NotificationError(Exception) :
         return "Notification {0} params {1}".format(self.notifIds, self.params)
     
 class CommandError(Exception):
-    '''
+    r'''
     \brief Exception class associated with an API definition.
     '''
     

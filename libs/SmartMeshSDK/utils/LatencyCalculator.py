@@ -18,7 +18,7 @@ log.setLevel(logging.ERROR)
 log.addHandler(NullHandler())
 
 class LatencyCalculator(threading.Thread) :
-    '''
+    r'''
     \brief Packet latency calculator for the SmartMesh IP network.
     '''
     QUERY_PERIOD_S     = 10
@@ -104,7 +104,7 @@ class LatencyCalculator(threading.Thread) :
     #======================== public ==========================================
     
     def getLatency(self,tsTxNetwork,tsRxPc):
-        '''
+        r'''
         \brief Calculate the latency of a given packet
         
         \param tsTxNetwork [in] The timestamp (in s) as read from the data
@@ -139,7 +139,7 @@ class LatencyCalculator(threading.Thread) :
         return latency
     
     def disconnect(self):
-        '''
+        r'''
         \brief Disconnect from the mamager.
         
         Causes the thread to terminate.
