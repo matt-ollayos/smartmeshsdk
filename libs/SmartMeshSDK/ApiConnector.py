@@ -30,7 +30,7 @@ def logDump(buf, msg = None, level=logging.DEBUG):
         log.log(level, msg)
     addr = 0
     step = 20
-    dump = " ".join(["{0:02x}".format(ord(c)) for c in buf])
+    dump = " ".join(["{0:02x}".format(ord(chr(c))) for c in buf])
     for i in range(0, len(dump), 3 * step) :
         log.log(level, "    {0:3} : {1}".format(addr, dump[i : i + 3 * step]))
         addr += step
